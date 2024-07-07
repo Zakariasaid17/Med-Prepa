@@ -29,12 +29,17 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
     correctAnswers: 0,
     wrongAnswers: 0,
   });
-  //const [timeRemaining, setTimeRemaining] = useState(25);
-  //const [timerRunning, setTimerRunning] = useState(false);
+  const [timeRemaining, setTimeRemaining] = useState(1800);
+  const [timerRunning, setTimerRunning] = useState(false);
+  const [finish,setFinish] = useState(false);
 
   const { question, answers, correctAnswer } = questions[activeQuestion];
 
-  /*useEffect(() => {
+  const hours = Math.floor(timeRemaining / 3600);
+    const minutes = Math.floor((timeRemaining % 3600) / 60);
+    const seconds = timeRemaining % 60;
+
+  useEffect(() => {
     let timer: NodeJS.Timeout;
     if (timerRunning && timeRemaining > 0) {
       timer = setTimeout(() => {
@@ -59,9 +64,12 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
   };
 
   const handleTimeUp = () => {
-    stopTimer();
-    resetTimer();
-    nextQuestion();
+    //stopTimer();
+    //resetTimer();
+    //nextQuestion();
+    setShowResults(true)
+    
+
   };
 
   useEffect(() => {
@@ -70,7 +78,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
     return () => {
       stopTimer();
     };
-  }, []);*/
+  }, []);
 
   const onAnswerSelected = (answer: string, idx: number) => {
     setChecked(true);
@@ -98,8 +106,15 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
             wrongAnswers: prev.wrongAnswers + 1,
           }
     );
-    if (activeQuestion !== 5 - 1) {
+
+    
+  
+    
+
+
+    if (activeQuestion !== 5 - 1 ) {
       setActiveQuestion((prev) => prev + 1);
+      
     } else {
       setShowResults(true);
       //stopTimer();
@@ -134,8 +149,10 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
   };
 
   return (
+    
 
     <>
+     
 
          <SignedOut>
            <div className='max-w-[988px] mx-auto flex-1 w-full flex flex-col lg:flex-row items-center justify-center p.4 gap-2'>
@@ -169,8 +186,13 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
                 </h2>
               </div>
 
+              <div className="bg-primary text-white px-4 rounded-md py-1">
+              {`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}
+              </div>
+            
+
               
-              <div className="bg-primary text-white px-4 rounded-md py-0">
+              <div className="bg-green-500 text-white px-4 rounded-md py-0">
                 
               <button
                 onClick={nextQuestion}
@@ -178,14 +200,16 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
                 className="font-bold"
               >
                 {activeQuestion === 5 - 1
-                  ? 'Finir le test'
-                  : 'Question suivante →'}
+                  ? 'Finir'
+                  : ' →'}
               </button>
+
+              </div>
 
               </div>
               
               
-            </div>
+            
 
             <div >
               
