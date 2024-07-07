@@ -3,6 +3,11 @@ import React, { useState, useEffect } from 'react';
 import StatCard from './StatCard';
 import 'katex/dist/katex.min.css';
 import { BlockMath, InlineMath } from 'react-katex';
+import { ClerkLoaded } from '@clerk/nextjs';
+import { SignedIn, SignedOut } from '@clerk/clerk-react';
+import Hero from './Hero';
+import Link from 'next/link';
+import Image from 'next/image';
 
 interface QuizProps {
   questions: {
@@ -93,7 +98,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
             wrongAnswers: prev.wrongAnswers + 1,
           }
     );
-    if (activeQuestion !== questions.length - 1) {
+    if (activeQuestion !== 5 - 1) {
       setActiveQuestion((prev) => prev + 1);
     } else {
       setShowResults(true);
@@ -129,6 +134,29 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
   };
 
   return (
+
+    <>
+
+         <SignedOut>
+           <div className='max-w-[988px] mx-auto flex-1 w-full flex flex-col lg:flex-row items-center justify-center p.4 gap-2'>
+           <div className="relative w-[240px] h-[240px] lg:w-[424px] lg:h-[424px] mb-8 lg:mb-0">
+           <Image src='./success.svg' fill alt="home image" />
+            </div>
+            <div className='flex flex-col items-center gap-y-3 max-w-[330px] w-full'>
+                 <button className="py-2 px-5 text-white bg-primary rounded-md " >
+                        <Link href='/'>
+                           SignUp
+                        </Link>
+                   </button>
+                   </div>
+            </div>
+           </SignedOut>
+
+
+
+
+      <SignedIn>
+
     <div className="h-[100vh] pt-5 pb-0">
       <div className="max-w-[1500px] py-0 mx-auto w-[90%] flex justify-center pt-5 flex-col">
         {!showResults ? (
@@ -137,7 +165,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
               <div className="bg-primary text-white px-4 rounded-md py-0">
                 <h2>
                   Question: {activeQuestion + 1}
-                  <span>/{questions.length}</span>
+                  <span>/{5}</span>
                 </h2>
               </div>
 
@@ -149,9 +177,9 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
                 disabled={!checked}
                 className="font-bold"
               >
-                {activeQuestion === questions.length - 1
-                  ? 'Finish'
-                  : 'Next Question →'}
+                {activeQuestion === 5 - 1
+                  ? 'Finir le test'
+                  : 'Question suivante →'}
               </button>
 
               </div>
@@ -186,24 +214,28 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
           </>
         ) : (
           <div className="text-center">
-            <h3 className="text-2xl uppercase mb-10">Results 📈</h3>
+            <h3 className="text-2xl uppercase mb-10">Résultats 📈</h3>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
-              <StatCard title="Percentage" value={`${(results.score / 50) * 100}%`} />
-              <StatCard title="Total Questions" value={questions.length} />
-              <StatCard title="Total Score" value={results.score} />
-              <StatCard title="Correct Answers" value={results.correctAnswers} />
-              <StatCard title="Wrong Answers" value={results.wrongAnswers} />
+              
+              <StatCard title="Nombre total de questions" value={5} />
+             
+              <StatCard title="Réponses Correctes" value={results.correctAnswers} />
+              <StatCard title="Réponses Incorrectes" value={results.wrongAnswers} />
             </div>
             <button
               onClick={() => window.location.reload()}
               className="mt-10 font-bold uppercase"
             >
-              Restart Quiz
+              Recommencer le Quiz
             </button>
           </div>
         )}
       </div>
     </div>
+
+    </SignedIn>
+
+    </>
   );
 };
 

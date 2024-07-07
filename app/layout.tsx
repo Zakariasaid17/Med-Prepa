@@ -10,7 +10,7 @@ const raleway = Raleway({
 });
 
 export const metadata: Metadata = {
-  title: "CodeQuiz",
+  title: "Med Prepa",
   description: "Weekly quiz question for developers",
 };
 

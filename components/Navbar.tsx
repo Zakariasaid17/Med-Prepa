@@ -1,7 +1,7 @@
 "use client";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { MdQuiz } from "react-icons/md";
+import { MdLocalHospital, MdQuiz } from "react-icons/md";
 import UserMenu from "./UserMenu";
 
 const Navbar = () => {
@@ -14,17 +14,13 @@ const Navbar = () => {
             className="flex gap-1 items-center text-2xl"
           >
             <h1 className="text-dark font-bold">
-              CodeQuiz
+              Med Prepa
             </h1>
-            <MdQuiz className="text-primary" />
+            <MdLocalHospital className="text-primary" />
           </Link>
         </div>
 
-        <div className="md:block hidden text-nowrap">
-          <span className="bg-primary px-5 py-1 rounded-md text-white">
-            Today's Category: Javascript
-          </span>
-        </div>
+        
 
         <div className="flex items-center gap-3 justify-end">
           

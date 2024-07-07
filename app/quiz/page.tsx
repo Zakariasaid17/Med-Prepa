@@ -1,3 +1,4 @@
+
 import Quiz from "@/components/Quiz";
 import { client } from "@/sanity/lib/client";
 import { fetchUsers } from "../(auth)/actions/fetchUsers";

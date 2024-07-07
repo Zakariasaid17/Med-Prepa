@@ -1,4 +1,4 @@
-import Learn from "./page";
+import Learn from "./page"
 
 
 type Props = {
