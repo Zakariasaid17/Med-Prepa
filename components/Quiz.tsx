@@ -112,7 +112,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
     
 
 
-    if (activeQuestion !== 5 - 1 ) {
+    if (activeQuestion !== 14 - 1 ) {
       setActiveQuestion((prev) => prev + 1);
       
     } else {
@@ -182,7 +182,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
               <div className="bg-primary text-white px-4 rounded-md py-0">
                 <h2>
                   Question: {activeQuestion + 1}
-                  <span>/{5}</span>
+                  <span>/{14}</span>
                 </h2>
               </div>
 
