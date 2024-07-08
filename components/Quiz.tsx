@@ -186,25 +186,11 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
                 </h2>
               </div>
 
-              <div className="bg-primary text-white px-4 rounded-md py-1">
+              <div className="bg-rose-500 text-white px-4 rounded-md py-1">
               {`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}
               </div>
             
 
-              
-              <div className="bg-green-500 text-white px-4 rounded-md py-0">
-                
-              <button
-                onClick={nextQuestion}
-                disabled={!checked}
-                className="font-bold"
-              >
-                {activeQuestion === 5 - 1
-                  ? 'Finir'
-                  : ' →'}
-              </button>
-
-              </div>
 
               </div>
               
@@ -232,7 +218,16 @@ const Quiz: React.FC<QuizProps> = ({ questions, userId }) => {
                   </li>
                 ))}
               </ul>
-              
+                 
+              <button
+                onClick={nextQuestion}
+                disabled={!checked}
+                className="font-bold bg-green-500 py-2 px-2 rounded-md text-white w-full disabled:bg-green-500/50"
+              >
+                {activeQuestion === questions.length - 1
+                  ? "Finir"
+                  : "Question Suivante →"}
+              </button>
 
             </div>
           </>

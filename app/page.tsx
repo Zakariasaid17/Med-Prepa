@@ -40,9 +40,15 @@ export default function Home() {
             <SignedIn>
             <Link href='/quiz' className="font-bold text-white active:text-white/50 active:bg-primary/50">
                    <button className="w-full bg-primary p-2 rounded-lg" >                    
-                           COMMENCER MAINTENANT                      
+                           quiz Math                    
                    </button>
-                   </Link>
+            </Link>
+
+            <Link href='/quizScience' className="font-bold text-white active:text-white/50 active:bg-primary/50">
+                   <button className="w-full bg-primary p-2 rounded-lg" >                    
+                           quiz Science                    
+                   </button>
+            </Link>
 
             </SignedIn>
          </ClerkLoaded>
